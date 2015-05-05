@@ -18,7 +18,7 @@ class EventType(models.Model):
 
 class Template(models.Model):
     name = models.CharField(max_length=60)
-    etype = models.ForeignKey('EventType', default=1)
+    etype = models.ForeignKey('EventType', default=1, related_name='templates')
     timage = models.ImageField(
         default=os.path.join(settings.STATIC_ROOT,'generic_profile_image.png'),
     )

@@ -8,33 +8,42 @@ class TequilaTypeSerializer(serializers.ModelSerializer):
         model = TequilaType
         fields = ('id', 'name',)
 
-class TequilaTypeViewSet(viewsets.ModelViewSet):
-    queryset = TequilaType.objects.all()
-    serializer_class = TequilaTypeSerializer
+
+class TemplateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Template
+        fields = ('id', 'name', 'etype', 'timage',)
+
 
 class EventTypeSerializer(serializers.ModelSerializer):
+    templates = TemplateSerializer(many=True, read_only=True)
+
     class Meta:
         model = EventType
-        fields = ('id', 'name',)
+        fields = ('id', 'name', 'templates',)
 
-class EventTypeViewSet(viewsets.ModelViewSet):
-    queryset = EventType.objects.all()
-    serializer_class = EventTypeSerializer
 
 class BoxPresentationSerializer(serializers.ModelSerializer):
     class Meta:
         model = BoxPresentation
         fields = ('id', 'bottlesize', 'bottles', 'maxlabels',)
 
+
+class TequilaTypeViewSet(viewsets.ModelViewSet):
+    queryset = TequilaType.objects.all()
+    serializer_class = TequilaTypeSerializer
+
+
+
+class EventTypeViewSet(viewsets.ModelViewSet):
+    queryset = EventType.objects.all()
+    serializer_class = EventTypeSerializer
+
+
 class BoxPresentationViewSet(viewsets.ModelViewSet):
     queryset = BoxPresentation.objects.all()
     serializer_class = BoxPresentationSerializer
 
-
-class TemplateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Template
-        fields = ('id', 'name', 'etype', 'timage',)
 
 class TemplateViewSet(viewsets.ModelViewSet):
     queryset = Template.objects.all()
