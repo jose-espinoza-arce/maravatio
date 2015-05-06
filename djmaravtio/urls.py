@@ -80,9 +80,9 @@ secondary_router.register(r'templates', TemplateViewSet)
 
 
 router = routers.DefaultRouter()
-router.register('tequila', TequilaTypeViewSet)
+router.register('types', TequilaTypeViewSet)
 #router.register('events', EventTypeViewSet)
-router.register('details', BoxPresentationViewSet)
+router.register('sizes', BoxPresentationViewSet)
 router.register('templates', TemplateViewSet)
 
 urlpatterns = [
