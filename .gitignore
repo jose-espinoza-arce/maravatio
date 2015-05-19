@@ -5,3 +5,4 @@
 .idea/
 .ropeproject/
 local_settings.py
+static/
